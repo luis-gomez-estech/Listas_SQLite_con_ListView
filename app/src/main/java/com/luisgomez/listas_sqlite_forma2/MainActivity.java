@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         listaSitios.setAdapter(adapter);
 
         // Notifying adapter
-        //adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
 
         // por ultimo, mostramos la lista (listview)
         listaSitios.setVisibility(View.VISIBLE);
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                         listaSitios.setAdapter(adapter);
 
                         // Notifying adapter
-                        //adapter.notifyDataSetChanged();
+                        adapter.notifyDataSetChanged();
 
                         // por ultimo, mostramos la lista (listview)
                         listaSitios.setVisibility(View.VISIBLE);
@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                     listaSitios.setAdapter(adapter);
 
                     // Notifying adapter
-                    //adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
 
                     // por ultimo, mostramos la lista (listview)
                     listaSitios.setVisibility(View.VISIBLE);

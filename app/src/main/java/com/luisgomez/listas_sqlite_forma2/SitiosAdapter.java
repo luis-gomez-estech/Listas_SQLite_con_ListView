@@ -6,16 +6,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class SitiosAdapter extends BaseAdapter {
+public class SitiosAdapter extends ArrayAdapter<Sitio> {
 
     ArrayList<Sitio> arrayList;
     LayoutInflater inflater;
     ViewHolder holder = null;
 
     public SitiosAdapter(Context context, ArrayList<Sitio> arrayList) {
+        super(context, 0);
         this.arrayList = arrayList;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -26,7 +27,7 @@ public class SitiosAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int pos) {
+    public Sitio getItem(int pos) {
         return arrayList.get(pos);
     }
 
@@ -43,7 +44,9 @@ public class SitiosAdapter extends BaseAdapter {
                     false);
             holder = new ViewHolder();
 
-            holder.text = (TextView) view.findViewById(R.id.todos_los_datos);
+            holder.textnombreSitio = view.findViewById(R.id.nombreSitio);
+            holder.textnombreCiudad = view.findViewById(R.id.nombreCiudad);
+            holder.textnombrePais = view.findViewById(R.id.nombrePais);
 
             view.setTag(holder);
         } else {
@@ -56,15 +59,20 @@ public class SitiosAdapter extends BaseAdapter {
         String nombrePais = arrayList.get(pos).getNombrePais();
 
         // Los datos que se muestran en la lista a traves del ViewHolder
-        holder.text.setText("Sitio : " + nombreSitio + "\n" + "Ciudad : " + nombreCiudad + "\n"
-                + "Pais : " + nombrePais);
+        holder.textnombreSitio.setText("Sitio : " + nombreSitio);
+
+        holder.textnombreCiudad.setText("Ciudad : " + nombreCiudad);
+
+        holder.textnombrePais.setText("Pais : " + nombrePais);
 
         return view;
     }
 
     public class ViewHolder {
 
-        TextView text;
+        TextView textnombreSitio;
+        TextView textnombreCiudad;
+        TextView textnombrePais;
 
     }
 

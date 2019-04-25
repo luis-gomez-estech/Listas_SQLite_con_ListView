@@ -103,6 +103,7 @@ public class SitiosSQLiteHelper extends SQLiteOpenHelper {
                 // Recorriendo todos los datos y agregandolos al Arraylist
                 do {
 
+                    // El 0,1,y son los lugares del array, al ser tres campos, nombre, ciudad y pais, van a ser 3 posiciones de array empezando desde el cero como siempre
                     Sitio data_model = new Sitio(cursor.getString(1),
                             cursor.getString(2), cursor.getString(3));
                     data.add(data_model);
