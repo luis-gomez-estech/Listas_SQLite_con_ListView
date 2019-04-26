@@ -2,6 +2,7 @@ package com.luisgomez.listas_sqlite_forma2;
 
 import java.util.ArrayList;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
@@ -17,7 +18,7 @@ public class SitiosAdapter extends ArrayAdapter<Sitio> {
     LayoutInflater inflater;
     ViewHolder holder = null;
 
-    SitiosSQLiteHelper database;
+
 
     public SitiosAdapter(Context context, ArrayList<Sitio> arrayList) {
         super(context, 0);
@@ -54,8 +55,6 @@ public class SitiosAdapter extends ArrayAdapter<Sitio> {
 
             view.setTag(holder);
 
-            Sitio item = getItem(pos);
-
             Button btnDelete = view.findViewById(R.id.btnEliminarItem);
 
             btnDelete.setOnClickListener(new View.OnClickListener() {
@@ -63,24 +62,12 @@ public class SitiosAdapter extends ArrayAdapter<Sitio> {
                 public void onClick(View v) {
                     SitiosSQLiteHelper db = new SitiosSQLiteHelper(v.getContext());
 
-                        remove(getItem(pos));
-                        notifyDataSetChanged();
 
-                    //database.deleteTable();
-                }
-            });
-
-
-
-
-
-                    // cerramos base de datos
-                    //database.close();
+                    remove(getItem(pos));
                     notifyDataSetChanged();
 
-
-                    //String sql = "DELETE FROM Usuarios WHERE codigo=" + cod;
-                    //db.execSQL(sql);
+                }
+            });
 
 
 

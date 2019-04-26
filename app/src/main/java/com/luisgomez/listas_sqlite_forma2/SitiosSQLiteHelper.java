@@ -51,7 +51,7 @@ public class SitiosSQLiteHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int olderVersion, int newVersion) {
 
         //Se elimina la versión anterior de la tabla
-       // db.execSQL("DROP TABLE IF EXISTS User_Data");
+        db.execSQL("DROP TABLE IF EXISTS User_Data");
 
         // Consulta si se ha cambiado la version de la base de datos
            onCreate(db);
