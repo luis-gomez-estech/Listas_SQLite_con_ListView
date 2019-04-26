@@ -3,10 +3,12 @@ package com.luisgomez.listas_sqlite_forma2;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class SitiosAdapter extends ArrayAdapter<Sitio> {
@@ -14,6 +16,8 @@ public class SitiosAdapter extends ArrayAdapter<Sitio> {
     ArrayList<Sitio> arrayList;
     LayoutInflater inflater;
     ViewHolder holder = null;
+
+    SitiosSQLiteHelper database;
 
     public SitiosAdapter(Context context, ArrayList<Sitio> arrayList) {
         super(context, 0);
@@ -37,7 +41,7 @@ public class SitiosAdapter extends ArrayAdapter<Sitio> {
     }
 
     @Override
-    public View getView(int pos, View view, ViewGroup root) {
+    public View getView(final int pos, View view, ViewGroup root) {
 
         if (view == null) {
             view = inflater.inflate(R.layout.list_item_sitio, root,
@@ -49,6 +53,37 @@ public class SitiosAdapter extends ArrayAdapter<Sitio> {
             holder.textnombrePais = view.findViewById(R.id.nombrePais);
 
             view.setTag(holder);
+
+            Sitio item = getItem(pos);
+
+            Button btnDelete = view.findViewById(R.id.btnEliminarItem);
+
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SitiosSQLiteHelper db = new SitiosSQLiteHelper(v.getContext());
+
+                        remove(getItem(pos));
+                        notifyDataSetChanged();
+
+                    //database.deleteTable();
+                }
+            });
+
+
+
+
+
+                    // cerramos base de datos
+                    //database.close();
+                    notifyDataSetChanged();
+
+
+                    //String sql = "DELETE FROM Usuarios WHERE codigo=" + cod;
+                    //db.execSQL(sql);
+
+
+
         } else {
             holder = (ViewHolder) view.getTag();
         }
@@ -75,5 +110,8 @@ public class SitiosAdapter extends ArrayAdapter<Sitio> {
         TextView textnombrePais;
 
     }
+
+
+
 
 }

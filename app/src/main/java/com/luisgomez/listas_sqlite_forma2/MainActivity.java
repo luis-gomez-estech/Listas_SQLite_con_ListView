@@ -3,6 +3,8 @@ package com.luisgomez.listas_sqlite_forma2;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -16,13 +18,13 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     EditText nombreSitio, nombreCiudad, nombrePais;
-    Button guardar, mostrar, borrar;
+    Button guardar, mostrar, borrar, btnEliminarItem;
     ListView listaSitios;
 
     SitiosSQLiteHelper database;
 
     // Variable para el tamaño de los campos de la tabla de base de datos
-    int tamanoCamposBD = 0;
+   public int tamanoCamposBD = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         guardar = (Button) findViewById(R.id.guardar);
         mostrar = (Button) findViewById(R.id.mostrar);
         borrar = (Button) findViewById(R.id.borrar);
+
+        // Boton que aparece en cada item para poderlo eliminar por separado
+        //btnEliminarItem = (Button) findViewById(R.id.btnEliminarItem);
 
         listaSitios = (ListView) findViewById(R.id.mostrar_datos_guardados);
 
@@ -82,6 +87,24 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
         // por ultimo, mostramos la lista (listview)
         listaSitios.setVisibility(View.VISIBLE);
+
+        /*
+        Button btnDelete = (Button) findViewById(R.id.btnEliminarItem);
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SitiosSQLiteHelper db = new SitiosSQLiteHelper(v.getContext());
+                if(db.deleteDB(getItem(pos).getNombreSitio())) {
+                    remove(getItem(pos));
+                    notifyDataSetChanged();
+                }
+            }
+        });
+        */
+
+
+
     }
 
 
@@ -226,8 +249,33 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 }
 
                 break;
+
+            case R.id.btnEliminarItem:
+
+                // Validacion para comprobar si hay datos que borrar o no
+                if (tamanoCamposBD == 0) {
+
+                    // Si no hay datos que borrar, mostramos mensaje
+                    Toast.makeText(MainActivity.this,"No existen datos para eliminar", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    // Pero si, si existen datos, entonces se borran los datos y se oculta la vista de lista
+                    Toast.makeText(MainActivity.this, "Datos borrados correctamente.",
+                            Toast.LENGTH_SHORT).show();
+                    database.deleteTable();
+                    listaSitios.setVisibility(View.GONE);
+                }
+
+                break;
         }
 
     }
 
+
+
 }
+
+
+
+

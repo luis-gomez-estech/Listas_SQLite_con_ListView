@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class SitiosSQLiteHelper extends SQLiteOpenHelper {
 
@@ -104,8 +105,8 @@ public class SitiosSQLiteHelper extends SQLiteOpenHelper {
                 do {
 
                     // El 0,1,y son los lugares del array, al ser tres campos, nombre, ciudad y pais, van a ser 3 posiciones de array empezando desde el cero como siempre
-                    Sitio data_model = new Sitio(cursor.getString(1),
-                            cursor.getString(2), cursor.getString(3));
+                    Sitio data_model = new Sitio(cursor.getString(0),
+                            cursor.getString(1), cursor.getString(2));
                     data.add(data_model);
 
                 } while (cursor.moveToNext());
@@ -137,4 +138,6 @@ public class SitiosSQLiteHelper extends SQLiteOpenHelper {
         db.close();
 
     }
+
+
 }
