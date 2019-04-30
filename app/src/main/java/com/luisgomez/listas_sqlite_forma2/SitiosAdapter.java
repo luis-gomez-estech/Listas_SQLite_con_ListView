@@ -62,7 +62,6 @@ public class SitiosAdapter extends ArrayAdapter<Sitio> {
                 public void onClick(View v) {
                     SitiosSQLiteHelper db = new SitiosSQLiteHelper(v.getContext());
 
-
                     remove(getItem(pos));
                     notifyDataSetChanged();
 

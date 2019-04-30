@@ -55,42 +55,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         // Boton que aparece en cada item para poderlo eliminar por separado
         //btnEliminarItem.setOnClickListener(this);
 
-        // Lista que va a mostrar los datos almacenados en la base de datos
-        List<Sitio> list = database.getAllData();
-
-        // Arraylist que va a guardar los sitios
-        ArrayList<Sitio> SitiosArrayList = new ArrayList<Sitio>();
-
-        // obteniendo el tamaño de la lista y lo guarda en tamanoCamposBD
-        tamanoCamposBD = list.size();
-
-        // Bucle que recorre la base de datos
-        for (Sitio data : list) {
-
-            // El bucle va  a recoger los atributos de cada sitio (objeto) de la base de datos
-            String nombreSitioGuardado = data.getNombreSitio();
-            String nombreCiudadGuardada = data.getNombreCiudad();
-            String nombrePaisGuardado = data.getNombrePais();
-
-            // Añado los datos al arraylist
-            SitiosArrayList.add(new Sitio(nombreSitioGuardado, nombreCiudadGuardada,
-                    nombrePaisGuardado));
-
-        }
-
-        // Adaptador actualiza el arraylist
-        SitiosAdapter adapter = new SitiosAdapter(MainActivity.this,
-                SitiosArrayList);
-
-        // Adaptador actualiza la lista
-        listaSitios.setAdapter(adapter);
-
-        // Notifying adapter
-        adapter.notifyDataSetChanged();
-
-        // por ultimo, mostramos la lista (listview)
-        listaSitios.setVisibility(View.VISIBLE);
-
+       Lista(); // llamamos al metodo Lista el cual va a mostrar la lista con los valores que resolvemos en ella
+        // Asi cuando se abra de nuevo la app, va aparece la lista con los datos guardados en la bd SQLite
 
     }
 
@@ -124,43 +90,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                             Toast.LENGTH_SHORT).show();
 
 
-                    // Para poner losdatos almacenados de la base de datos en la lista
-                    List<Sitio> list = database.getAllData();
-
-                    // Arraylist que va a guardar los sitios
-                    ArrayList<Sitio> SitiosArrayList = new ArrayList<Sitio>();
-
-                    // obteniendo el tamaño de la lista y lo guarda en tamanoCamposBD
-                    tamanoCamposBD = list.size();
-
-
-                        // Bucle que recorre la base de datos
-                        for (Sitio data : list) {
-
-                            // El bucle va  a recoger los atributos de cada sitio (objeto) de la base de datos
-                            String nombreGuardado = data.getNombreSitio();
-                            String emailGuardado = data.getNombreCiudad();
-                            String direccionGuardada = data.getNombrePais();
-
-                            // Añado los datos al arraylist
-                            SitiosArrayList.add(new Sitio(nombreGuardado, emailGuardado,
-                                    direccionGuardada));
-
-                        }
-
-                        // Adaptador actualiza el arraylist
-                        SitiosAdapter adapter = new SitiosAdapter(MainActivity.this,
-                                SitiosArrayList);
-
-                        // Adaptador actualiza la lista
-                        listaSitios.setAdapter(adapter);
-
-                        // Notifying adapter
-                        adapter.notifyDataSetChanged();
-
-                        // por ultimo, mostramos la lista (listview)
-                        listaSitios.setVisibility(View.VISIBLE);
-
+                    Lista(); // llamamos al metodo Lista el cual va a mostrar la lista con los valores que resolvemos en ella
+                    // Asi cuando pulsamos el boton Guardar, ademas de guardar los datos en la base de datos, nos va a mostrar la lista
 
                 }
 
@@ -241,6 +172,47 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         }
 
     }
+
+
+    public void Lista() {
+        // Lista que va a mostrar los datos almacenados en la base de datos
+        List<Sitio> list = database.getAllData();
+
+        // Arraylist que va a guardar los sitios
+        ArrayList<Sitio> SitiosArrayList = new ArrayList<Sitio>();
+
+        // obteniendo el tamaño de la lista y lo guarda en tamanoCamposBD
+        tamanoCamposBD = list.size();
+
+        // Bucle que recorre la base de datos
+        for (Sitio data : list) {
+
+            // El bucle va  a recoger los atributos de cada sitio (objeto) de la base de datos
+            String nombreSitioGuardado = data.getNombreSitio();
+            String nombreCiudadGuardada = data.getNombreCiudad();
+            String nombrePaisGuardado = data.getNombrePais();
+
+            // Añado los datos al arraylist
+            SitiosArrayList.add(new Sitio(nombreSitioGuardado, nombreCiudadGuardada,
+                    nombrePaisGuardado));
+
+        }
+
+        // Adaptador actualiza el arraylist
+        SitiosAdapter adapter = new SitiosAdapter(MainActivity.this,
+                SitiosArrayList);
+
+        // Adaptador actualiza la lista
+        listaSitios.setAdapter(adapter);
+
+        // Notifying adapter
+        adapter.notifyDataSetChanged();
+
+        // por ultimo, mostramos la lista (listview)
+        listaSitios.setVisibility(View.VISIBLE);
+
+    }
+
 
 
 
