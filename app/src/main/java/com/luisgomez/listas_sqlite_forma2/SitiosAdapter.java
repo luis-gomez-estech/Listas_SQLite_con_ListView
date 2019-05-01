@@ -84,9 +84,6 @@ public class SitiosAdapter extends ArrayAdapter<Sitio> {
                 }
             });
 
-
-
-
         } else {
             holder = (ViewHolder) view.getTag();
         }
