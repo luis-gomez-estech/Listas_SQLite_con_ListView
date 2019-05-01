@@ -65,6 +65,7 @@ public class SitiosAdapter extends ArrayAdapter<Sitio> {
 
                     SitiosSQLiteHelper db = new SitiosSQLiteHelper(v.getContext());
 
+<<<<<<< HEAD
                     // arrayList.remove(pos);
 
                     arrayList.remove(pos);
@@ -76,6 +77,9 @@ public class SitiosAdapter extends ArrayAdapter<Sitio> {
                     //db.deleteData(pos);
                     //db.clear(pos);
 
+=======
+                    remove(getItem(pos));
+>>>>>>> 21f8aa0bb97dc39dc2214c7a598fb2b38e5c7f69
                     notifyDataSetChanged();
 
 
