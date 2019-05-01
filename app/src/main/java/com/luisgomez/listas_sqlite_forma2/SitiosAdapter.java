@@ -1,16 +1,14 @@
 package com.luisgomez.listas_sqlite_forma2;
 
-import java.util.ArrayList;
-
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class SitiosAdapter extends ArrayAdapter<Sitio> {
 
@@ -55,6 +53,7 @@ public class SitiosAdapter extends ArrayAdapter<Sitio> {
 
             view.setTag(holder);
 
+            /*
             //Boton que aparece en cada item de la lista, para eliminar dicho item de la lista al pulsarlo
 
             Button btnEliminarItem = view.findViewById(R.id.btnEliminarItem);
@@ -63,26 +62,18 @@ public class SitiosAdapter extends ArrayAdapter<Sitio> {
                 @Override
                 public void onClick(View v) {
 
-                    SitiosSQLiteHelper db = new SitiosSQLiteHelper(v.getContext());
-
-                    // arrayList.remove(pos);
+                    //SitiosSQLiteHelper db = new SitiosSQLiteHelper(v.getContext());
 
                     arrayList.remove(pos);
-
-                    // myList.clear();
-
-                    //arrayList.addAll(data);
-
-                    //db.deleteData(pos);
-                    //db.clear(pos);
-
-//                    remove(getItem(pos));
 
                     notifyDataSetChanged();
 
 
                 }
             });
+            */
+
+
 
         } else {
             holder = (ViewHolder) view.getTag();

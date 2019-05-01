@@ -1,10 +1,5 @@
 package com.luisgomez.listas_sqlite_forma2;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -13,10 +8,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
-import static android.text.TextUtils.isEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
@@ -25,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     ListView listaSitios;
 
     SitiosSQLiteHelper database;
+
+    SitiosAdapter adapter;
 
     // Variable para el tamaño de los campos de la tabla de base de datos
    public int tamanoCamposBD = 0;
@@ -59,8 +56,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         // Asi cuando se abra de nuevo la app, va aparece la lista con los datos guardados en la bd SQLite
 
     }
-
-
 
     @Override
     public void onClick(View view) {
@@ -212,6 +207,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         listaSitios.setVisibility(View.VISIBLE);
 
     }
+
 
 
 
